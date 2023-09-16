@@ -1,14 +1,14 @@
 import { boot } from "quasar/wrappers";
 import axios from "axios";
-const token = import.meta.VITE_API_TOKEN;
-const api = axios.create({ baseURL: "https://api.tomorrow.io/v4/" });
+const api_locations = axios.create({
+  baseURL: "https://api.geoapify.com/v1/geocode/autocomplete",
+});
 
 import { Notify } from "quasar";
 
 export default boot(({ app }) => {
-  api.interceptors.request.use(
+  api_locations.interceptors.request.use(
     (config) => {
-      config.headers.Authorization = `Bearer ${token}`;
       return config;
     },
     (error) => {
@@ -21,7 +21,7 @@ export default boot(({ app }) => {
     }
   );
 
-  api.interceptors.response.use(
+  api_locations.interceptors.response.use(
     (response) => {
       const type =
         response.status >= 200 && response.status < 400
@@ -34,11 +34,12 @@ export default boot(({ app }) => {
           position: "bottom-right",
         });
       }
+      return response;
     },
     (error) => {
       Notify.create({
         type: "negative",
-        message: error,
+        message: error.message,
         position: "bottom-right",
       });
       return Promise.reject(error);
@@ -47,7 +48,7 @@ export default boot(({ app }) => {
 
   app.config.globalProperties.$axios = axios;
 
-  app.config.globalProperties.$api = api;
+  app.config.globalProperties.$api_locations = api_locations;
 });
 
-export { api };
+export { api_locations };
