@@ -1,7 +1,7 @@
-// This is just an example,
-// so you can safely delete all default props below
+import Common from "./Common.json";
 
 export default {
-  failed: 'Action failed',
-  success: 'Action was successful'
-}
+  Common,
+  failed: "Action failed",
+  success: "Action was successful",
+};
