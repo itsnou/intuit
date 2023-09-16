@@ -1,4 +1,12 @@
 {
+  "Cancel": "Cancel",
   "Home": "Home",
-  "Search": "Search"
+  "Humidity": "Humidity",
+  "Search": "Search",
+  "SelectDate": "Select Date Range",
+  "Temp": "Temperature",
+  "TempApparent": "Apparent Temperature",
+  "TempMax": "Temp. Max",
+  "TempMin": "Temp. Min",
+  "NoResults": "No results"
 }

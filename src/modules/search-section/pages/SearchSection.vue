@@ -36,24 +36,20 @@
         </q-select>
       </q-card-section>
     </q-card>
-    <q-card v-if="autocomplete" class="q-mt-md">
-      <q-card-section>
-        <q-item>
-          <q-item-section>
-            <q-item-label>{{ autocomplete }}</q-item-label>
-          </q-item-section>
-        </q-item>
-      </q-card-section>
-    </q-card>
+    <Card v-if="autocomplete" class="q-mt-md" :autocomplete="autocomplete" />
   </div>
 </template>
 
 <script>
 import { defineComponent, computed, ref } from "vue";
 import { useSearchStore } from "../store/searchStore";
+import Card from "../components/Card.vue";
 
 export default defineComponent({
   name: "SearchSection",
+  components: {
+    Card
+  },
   setup() {
     const autocomplete = ref("");
     const filterLocationsLoading = ref(false);
@@ -71,6 +67,7 @@ export default defineComponent({
     return {
       // variables
       autocomplete,
+      filterLocationsLoading,
       // computed
       locations,
       // methods,
