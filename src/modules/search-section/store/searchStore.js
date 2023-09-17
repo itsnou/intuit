@@ -9,6 +9,7 @@ const token_historical_key = import.meta.env.VITE_API_TOKEN_HISTORICAL_KEY;
 
 const CACHE_KEY_LOCATIONS = "locations_cache";
 const CACHE_KEY_WEATHER = "weather_cache";
+const CACHE_PAYLOAD_LOCATIONS = "locations_payload";
 const CACHE_EXPIRATION_TIME = 2 * 60 * 1000;
 
 export const useSearchStore = defineStore("search", () => {
@@ -29,8 +30,9 @@ export const useSearchStore = defineStore("search", () => {
     const cachedTimestamp = localStorage.getItem(
       CACHE_KEY_LOCATIONS + "_timestamp"
     );
+    const cachePayload = localStorage.getItem(CACHE_PAYLOAD_LOCATIONS);
 
-    if (cachedData && cachedTimestamp) {
+    if (cachedData && cachedTimestamp && cachePayload === payload) {
       const currentTime = new Date().getTime();
       if (currentTime - Number(cachedTimestamp) <= CACHE_EXPIRATION_TIME) {
         listLocations.value = JSON.parse(cachedData);
@@ -59,6 +61,7 @@ export const useSearchStore = defineStore("search", () => {
           CACHE_KEY_LOCATIONS + "_timestamp",
           new Date().getTime().toString()
         );
+        localStorage.setItem(CACHE_PAYLOAD_LOCATIONS, payload);
       } catch (error) {
         return null;
       }

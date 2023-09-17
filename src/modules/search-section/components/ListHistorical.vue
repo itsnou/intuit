@@ -61,7 +61,7 @@ export default defineComponent({
   name: "list-historical",
   props: {
     historicalData: {
-      type: Array,
+      type: Object,
       required: true
     }
   },

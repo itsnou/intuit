@@ -70,3 +70,9 @@ export default defineComponent({
   ]
 });
 </script>
+<style lang="scss" scoped>
+.custom-padding {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+</style>
