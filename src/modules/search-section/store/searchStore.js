@@ -10,7 +10,7 @@ const token_historical_key = import.meta.env.VITE_API_TOKEN_HISTORICAL_KEY;
 const CACHE_KEY_LOCATIONS = "locations_cache";
 const CACHE_KEY_WEATHER = "weather_cache";
 const CACHE_KEY_HISTORICAL = "historical_cache";
-const CACHE_EXPIRATION_TIME = 2 * 60 * 1000;
+const CACHE_EXPIRATION_TIME = 2 * 60 * 60 * 1000;
 
 export const useSearchStore = defineStore("search", () => {
   const listLocations = ref([]);

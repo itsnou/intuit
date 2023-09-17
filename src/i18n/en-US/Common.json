@@ -1,5 +1,6 @@
 {
   "Cancel": "Cancel",
+  "From": "From",
   "Home": "Home",
   "Humidity": "Humidity",
   "Search": "Search",
@@ -8,5 +9,7 @@
   "TempApparent": "Apparent Temperature",
   "TempMax": "Temp. Max",
   "TempMin": "Temp. Min",
-  "NoResults": "No results"
+  "To": "To",
+  "NoResults": "No results",
+  "WheatherHistorical": "Obtain history by date range"
 }

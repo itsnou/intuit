@@ -47,7 +47,7 @@
     <q-dialog v-model="dialog">
       <q-card width="300px">
         <q-card-section>
-          <q-card-title>{{ $t("Alert.ChangeLanguage.Title") }}</q-card-title>
+          <div class="text-h6">{{ $t("Alert.ChangeLanguage.Title") }}</div>
         </q-card-section>
 
         <q-card-section>

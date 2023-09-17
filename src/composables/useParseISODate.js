@@ -1,4 +1,9 @@
+import { useI18n } from "vue-i18n";
+import { computed } from "vue";
+
 const useParseISODate = (isoDate) => {
+  const i18n = useI18n();
+  const language = computed(() => i18n.locale.value);
   const options = {
     weekday: "long",
     year: "numeric",
@@ -13,7 +18,7 @@ const useParseISODate = (isoDate) => {
   const date = new Date(isoDate);
 
   // Obtener la fecha en el formato deseado
-  const formattedDate = date.toLocaleDateString("en-US", options);
+  const formattedDate = date.toLocaleDateString(language, options);
 
   return formattedDate;
 };

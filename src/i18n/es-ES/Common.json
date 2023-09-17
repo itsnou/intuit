@@ -1,5 +1,6 @@
 {
   "Cancel": "Cancelar",
+  "From": "Desde",
   "Home": "Inicio",
   "Humidity": "Humedad",
   "Search": "Buscar por país o ciudad",
@@ -8,5 +9,7 @@
   "TempApparent": "Sensación Térmica",
   "TempMax": "Temp. Max",
   "TempMin": "Temp. Min",
-  "NoResults": "Sin resultados"
+  "To": "Hasta",
+  "NoResults": "Sin resultados",
+  "WheatherHistorical": "Obtener el histórico por rango de fecha"
 }
