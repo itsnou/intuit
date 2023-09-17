@@ -17,6 +17,13 @@ export const useSearchStore = defineStore("search", () => {
   const historicalData = ref(null);
   const locations = computed(() => listLocations.value);
 
+  /**
+   * Se obtiene la lista de ubicaciones desde la API geoapify. Si el parámetro de búsqueda está vacío, se devuelve una lista vacía.
+   * @async
+   * @param {string} payload - El texto de búsqueda para obtener las ubicaciones.
+   * @returns {Promise<Array>|null} Una promesa que resuelve en una matriz de ubicaciones o null si la solicitud falla o no se encuentra en caché.
+   * @throws {Error} Si ocurre un error durante la solicitud al servidor.
+   */
   const getAllLocations = async (payload) => {
     const cachedData = localStorage.getItem(CACHE_KEY_LOCATIONS);
     const cachedTimestamp = localStorage.getItem(
@@ -58,6 +65,16 @@ export const useSearchStore = defineStore("search", () => {
     }
   };
 
+  /**
+   * Obtiene datos climáticos para una ubicación especificada por latitud y longitud,
+   * ya sea desde el servidor o desde la caché local si está disponible.
+   * @async
+   * @param {Object} params - Parámetros de la solicitud de datos climáticos.
+   * @param {number} params.lat - Latitud de la ubicación.
+   * @param {number} params.lon - Longitud de la ubicación.
+   * @returns {Promise<Object>|null} Una promesa que resuelve en datos climáticos o null si la solicitud falla o no se encuentra en caché.
+   * @throws {Error} Si ocurre un error durante la solicitud al servidor.
+   */
   const getWeatherData = async ({ lat, lon }) => {
     const cachedData = localStorage.getItem(CACHE_KEY_WEATHER);
     const cachedTimestamp = localStorage.getItem(
@@ -97,6 +114,19 @@ export const useSearchStore = defineStore("search", () => {
     }
   };
 
+  /**
+   * Obtiene datos climáticos históricos para una ubicación especificada por latitud y longitud
+   * en un rango de fechas especificado.
+   *
+   * @async
+   * @param {Object} params - Parámetros de la solicitud de datos climáticos históricos.
+   * @param {number} params.lat - Latitud de la ubicación.
+   * @param {number} params.lon - Longitud de la ubicación.
+   * @param {string} params.from - Fecha de inicio en formato ISO (ejemplo: '2023-09-01').
+   * @param {string} params.to - Fecha de finalización en formato ISO (ejemplo: '2023-09-15').
+   * @returns {Promise<Object>|null} Una promesa que resuelve en datos climáticos históricos o null si la solicitud falla.
+   * @throws {Error} Si ocurre un error durante la solicitud al servidor.
+   */
   const getHistoricalWheather = async ({ lat, lon, from, to }) => {
     try {
       const { data } = await api_historical.get(`/conditions/${lat},${lon}`, {
